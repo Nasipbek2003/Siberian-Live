@@ -27,6 +27,7 @@ def api_root(request):
             'products': '/api/products/',
             'categories': '/api/products/categories/',
             'orders': '/api/orders/',
+            'users': '/api/users/',
             'admin': '/admin/',
         }
     })
@@ -36,6 +37,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/products/', include('products.urls')),
     path('api/orders/', include('orders.urls')),
+    path('api/users/', include('users.urls')),
     path('api-auth/', include('rest_framework.urls')),
 ]
 

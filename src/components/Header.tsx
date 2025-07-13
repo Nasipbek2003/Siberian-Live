@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { ShoppingCart, Menu, X, Leaf } from 'lucide-react';
+import { ShoppingCart, Menu, X, Leaf, User, LogOut } from 'lucide-react';
 import { useCart } from '../contexts/CartContext';
+import { useAuth } from '../contexts/AuthContext';
+import LoginModal from './LoginModal';
+import RegisterModal from './RegisterModal';
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+  const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false);
   const { getTotalItems } = useCart();
+  const { user, isAuthenticated, logout } = useAuth();
   const location = useLocation();
 
   const navigation = [
@@ -46,7 +52,7 @@ const Header: React.FC = () => {
             ))}
           </nav>
 
-          {/* Cart and Mobile Menu */}
+          {/* Cart, Auth and Mobile Menu */}
           <div className="flex items-center space-x-4">
             <Link
               to="/cart"
@@ -59,6 +65,37 @@ const Header: React.FC = () => {
                 </span>
               )}
             </Link>
+
+            {/* Auth Buttons */}
+            {isAuthenticated ? (
+              <div className="flex items-center space-x-2">
+                <span className="text-sm text-gray-700 hidden sm:block">
+                  {user?.first_name || user?.username}
+                </span>
+                <button
+                  onClick={logout}
+                  className="p-2 text-gray-700 hover:text-emerald-600 transition-colors"
+                  title="Выйти"
+                >
+                  <LogOut className="h-5 w-5" />
+                </button>
+              </div>
+            ) : (
+              <div className="flex items-center space-x-2">
+                <button
+                  onClick={() => setIsLoginModalOpen(true)}
+                  className="px-3 py-1 text-sm text-emerald-600 hover:text-emerald-700 font-medium"
+                >
+                  Вход
+                </button>
+                <button
+                  onClick={() => setIsRegisterModalOpen(true)}
+                  className="px-3 py-1 text-sm bg-emerald-600 text-white rounded-md hover:bg-emerald-700 transition-colors"
+                >
+                  Регистрация
+                </button>
+              </div>
+            )}
 
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -91,6 +128,25 @@ const Header: React.FC = () => {
           </div>
         )}
       </div>
+
+      {/* Auth Modals */}
+      <LoginModal
+        isOpen={isLoginModalOpen}
+        onClose={() => setIsLoginModalOpen(false)}
+        onSwitchToRegister={() => {
+          setIsLoginModalOpen(false);
+          setIsRegisterModalOpen(true);
+        }}
+      />
+      
+      <RegisterModal
+        isOpen={isRegisterModalOpen}
+        onClose={() => setIsRegisterModalOpen(false)}
+        onSwitchToLogin={() => {
+          setIsRegisterModalOpen(false);
+          setIsLoginModalOpen(true);
+        }}
+      />
     </header>
   );
 };

@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { CartProvider } from './contexts/CartContext';
+import { AuthProvider } from './contexts/AuthContext';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
@@ -16,28 +17,30 @@ import Contacts from './pages/Contacts';
 
 function App() {
   return (
-    <CartProvider>
-      <Router>
-        <div className="min-h-screen bg-gray-50">
-          <Header />
-          <main>
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/catalog" element={<ProductCatalog />} />
-              <Route path="/product/:id" element={<ProductDetail />} />
-              <Route path="/cart" element={<ShoppingCart />} />
-              <Route path="/checkout" element={<Checkout />} />
-              <Route path="/order-success" element={<OrderSuccess />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/business" element={<Business />} />
-              <Route path="/team" element={<Team />} />
-              <Route path="/contacts" element={<Contacts />} />
-            </Routes>
-          </main>
-          <Footer />
-        </div>
-      </Router>
-    </CartProvider>
+    <AuthProvider>
+      <CartProvider>
+        <Router>
+          <div className="min-h-screen bg-gray-50">
+            <Header />
+            <main>
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/catalog" element={<ProductCatalog />} />
+                <Route path="/product/:id" element={<ProductDetail />} />
+                <Route path="/cart" element={<ShoppingCart />} />
+                <Route path="/checkout" element={<Checkout />} />
+                <Route path="/order-success" element={<OrderSuccess />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/business" element={<Business />} />
+                <Route path="/team" element={<Team />} />
+                <Route path="/contacts" element={<Contacts />} />
+              </Routes>
+            </main>
+            <Footer />
+          </div>
+        </Router>
+      </CartProvider>
+    </AuthProvider>
   );
 }
 
