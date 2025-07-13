@@ -1,0 +1,9 @@
+DEBUG=True
+SECRET_KEY=django-insecure-p_wg*6nwb65*jck4(j!z_f614ju6&kgi7#z!i9vzhpp@da09f(
+DATABASE_NAME=Shop
+DATABASE_USER=postgres
+DATABASE_PASSWORD=nasiko2003
+DATABASE_HOST=127.0.0.1
+DATABASE_PORT=5432
+ALLOWED_HOSTS=localhost,127.0.0.1
+CORS_ALLOWED_ORIGINS=http://localhost:5173,http://127.0.0.1:5173 
