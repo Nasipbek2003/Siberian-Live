@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { TrendingUp, Users, Award, DollarSign, CheckCircle, ArrowRight } from 'lucide-react';
 import { teamMembers } from '../data/team';
+import { motion } from 'framer-motion';
 
 const Business: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -11,6 +12,39 @@ const Business: React.FC = () => {
     experience: '',
     motivation: ''
   });
+
+  // Анимации
+  const fadeInUp = {
+    initial: { opacity: 0, y: 60 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.6 }
+  };
+
+  const staggerContainer = {
+    animate: {
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const scaleIn = {
+    initial: { opacity: 0, scale: 0.8 },
+    animate: { opacity: 1, scale: 1 },
+    transition: { duration: 0.5 }
+  };
+
+  const slideInLeft = {
+    initial: { opacity: 0, x: -60 },
+    animate: { opacity: 1, x: 0 },
+    transition: { duration: 0.6 }
+  };
+
+  const slideInRight = {
+    initial: { opacity: 0, x: 60 },
+    animate: { opacity: 1, x: 0 },
+    transition: { duration: 0.6 }
+  };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -28,347 +62,423 @@ const Business: React.FC = () => {
       {/* Hero Section */}
       <section className="bg-gradient-to-r from-emerald-600 to-emerald-800 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-          <div className="text-center">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
+          <motion.div 
+            className="text-center"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <motion.h1 
+              className="text-4xl md:text-6xl font-bold mb-6"
+              variants={fadeInUp}
+              initial="initial"
+              animate="animate"
+            >
               Присоединяйтесь к нашей команде!
-            </h1>
-            <p className="text-xl md:text-2xl mb-8 text-emerald-100">
+            </motion.h1>
+            <motion.p 
+              className="text-xl md:text-2xl mb-8 text-emerald-100"
+              variants={fadeInUp}
+              initial="initial"
+              animate="animate"
+            >
               Начните зарабатывать с Siberian Wellness уже сегодня
-            </p>
-            <div className="flex justify-center space-x-8 text-center">
-              <div>
+            </motion.p>
+            <motion.div 
+              className="flex justify-center space-x-8 text-center"
+              variants={staggerContainer}
+              initial="initial"
+              animate="animate"
+            >
+              <motion.div variants={fadeInUp}>
                 <div className="text-3xl font-bold text-yellow-300">25+</div>
                 <div className="text-emerald-100">лет на рынке</div>
-              </div>
-              <div>
+              </motion.div>
+              <motion.div variants={fadeInUp}>
                 <div className="text-3xl font-bold text-yellow-300">500K+</div>
                 <div className="text-emerald-100">довольных клиентов</div>
-              </div>
-              <div>
+              </motion.div>
+              <motion.div variants={fadeInUp}>
                 <div className="text-3xl font-bold text-yellow-300">30+</div>
                 <div className="text-emerald-100">стран присутствия</div>
-              </div>
-            </div>
-          </div>
+              </motion.div>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 
       {/* How It Works */}
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <motion.div 
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               Как это работает
             </h2>
             <p className="text-xl text-gray-600">
               Простые шаги к финансовой свободе
             </p>
-          </div>
+          </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="bg-emerald-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
+          <motion.div 
+            className="grid grid-cols-1 md:grid-cols-3 gap-8"
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+          >
+            <motion.div 
+              className="text-center"
+              variants={scaleIn}
+              whileHover={{ y: -10, transition: { duration: 0.3 } }}
+            >
+              <motion.div 
+                className="bg-emerald-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6"
+                whileHover={{ rotate: 360 }}
+                transition={{ duration: 0.6 }}
+              >
                 <span className="text-2xl font-bold text-emerald-600">1</span>
-              </div>
+              </motion.div>
               <h3 className="text-xl font-semibold mb-4">Регистрация</h3>
               <p className="text-gray-600">
                 Заполните форму и присоединитесь к нашей команде партнеров
               </p>
-            </div>
+            </motion.div>
 
-            <div className="text-center">
-              <div className="bg-emerald-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
+            <motion.div 
+              className="text-center"
+              variants={scaleIn}
+              whileHover={{ y: -10, transition: { duration: 0.3 } }}
+            >
+              <motion.div 
+                className="bg-emerald-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6"
+                whileHover={{ rotate: 360 }}
+                transition={{ duration: 0.6 }}
+              >
                 <span className="text-2xl font-bold text-emerald-600">2</span>
-              </div>
+              </motion.div>
               <h3 className="text-xl font-semibold mb-4">Обучение</h3>
               <p className="text-gray-600">
                 Получите персональное обучение от опытных наставников
               </p>
-            </div>
+            </motion.div>
 
-            <div className="text-center">
-              <div className="bg-emerald-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
+            <motion.div 
+              className="text-center"
+              variants={scaleIn}
+              whileHover={{ y: -10, transition: { duration: 0.3 } }}
+            >
+              <motion.div 
+                className="bg-emerald-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6"
+                whileHover={{ rotate: 360 }}
+                transition={{ duration: 0.6 }}
+              >
                 <span className="text-2xl font-bold text-emerald-600">3</span>
-              </div>
+              </motion.div>
               <h3 className="text-xl font-semibold mb-4">Заработок</h3>
               <p className="text-gray-600">
                 Начните продавать продукты и развивать свою команду
               </p>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 
       {/* Benefits */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <motion.div 
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               Преимущества партнерства
             </h2>
             <p className="text-xl text-gray-600">
-              Почему тысячи людей выбирают нас для своего бизнеса
+              Почему стоит выбрать Siberian Wellness
             </p>
-          </div>
+          </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="text-center">
-              <div className="bg-emerald-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+          <motion.div 
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+          >
+            <motion.div 
+              className="text-center"
+              variants={scaleIn}
+              whileHover={{ y: -10, transition: { duration: 0.3 } }}
+            >
+              <motion.div 
+                className="bg-emerald-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6"
+                whileHover={{ rotate: 360 }}
+                transition={{ duration: 0.6 }}
+              >
                 <TrendingUp className="h-8 w-8 text-emerald-600" />
-              </div>
-              <h3 className="text-lg font-semibold mb-2">Растущий рынок</h3>
-              <p className="text-gray-600">Рынок здоровья растет на 15% в год</p>
-            </div>
+              </motion.div>
+              <h3 className="text-xl font-semibold mb-4">Высокий доход</h3>
+              <p className="text-gray-600">
+                Возможность зарабатывать от 50,000 до 500,000 рублей в месяц
+              </p>
+            </motion.div>
 
-            <div className="text-center">
-              <div className="bg-emerald-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+            <motion.div 
+              className="text-center"
+              variants={scaleIn}
+              whileHover={{ y: -10, transition: { duration: 0.3 } }}
+            >
+              <motion.div 
+                className="bg-emerald-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6"
+                whileHover={{ rotate: 360 }}
+                transition={{ duration: 0.6 }}
+              >
                 <Users className="h-8 w-8 text-emerald-600" />
-              </div>
-              <h3 className="text-lg font-semibold mb-2">Команда поддержки</h3>
-              <p className="text-gray-600">Персональный наставник для каждого</p>
-            </div>
+              </motion.div>
+              <h3 className="text-xl font-semibold mb-4">Команда поддержки</h3>
+              <p className="text-gray-600">
+                Опытные наставники помогут вам достичь успеха
+              </p>
+            </motion.div>
 
-            <div className="text-center">
-              <div className="bg-emerald-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+            <motion.div 
+              className="text-center"
+              variants={scaleIn}
+              whileHover={{ y: -10, transition: { duration: 0.3 } }}
+            >
+              <motion.div 
+                className="bg-emerald-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6"
+                whileHover={{ rotate: 360 }}
+                transition={{ duration: 0.6 }}
+              >
                 <Award className="h-8 w-8 text-emerald-600" />
-              </div>
-              <h3 className="text-lg font-semibold mb-2">Качество продукции</h3>
-              <p className="text-gray-600">Сертификаты ISO и GMP</p>
-            </div>
+              </motion.div>
+              <h3 className="text-xl font-semibold mb-4">Качественные продукты</h3>
+              <p className="text-gray-600">
+                Продавайте только проверенные и сертифицированные товары
+              </p>
+            </motion.div>
 
-            <div className="text-center">
-              <div className="bg-emerald-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+            <motion.div 
+              className="text-center"
+              variants={scaleIn}
+              whileHover={{ y: -10, transition: { duration: 0.3 } }}
+            >
+              <motion.div 
+                className="bg-emerald-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6"
+                whileHover={{ rotate: 360 }}
+                transition={{ duration: 0.6 }}
+              >
                 <DollarSign className="h-8 w-8 text-emerald-600" />
-              </div>
-              <h3 className="text-lg font-semibold mb-2">Высокие доходы</h3>
-              <p className="text-gray-600">До 50% от продаж команды</p>
-            </div>
-          </div>
+              </motion.div>
+              <h3 className="text-xl font-semibold mb-4">Гибкий график</h3>
+              <p className="text-gray-600">
+                Работайте в удобное для вас время
+              </p>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 
       {/* Success Stories */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <motion.div 
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               Истории успеха
             </h2>
             <p className="text-xl text-gray-600">
-              Узнайте, как наши партнеры достигли финансовой свободы
+              Наши партнеры делятся своими достижениями
             </p>
-          </div>
+          </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {teamMembers.slice(0, 2).map((member) => (
-              <div key={member.id} className="bg-white rounded-lg shadow-md p-8">
-                <div className="flex items-center mb-6">
-                  <img
-                    src={member.image}
-                    alt={member.name}
-                    className="w-16 h-16 rounded-full object-cover mr-4"
-                  />
-                  <div>
-                    <h3 className="text-xl font-semibold text-gray-900">{member.name}</h3>
-                    <p className="text-emerald-600 font-medium">{member.level}</p>
-                    <p className="text-lg font-bold text-gray-900">{member.achievement}</p>
-                  </div>
-                </div>
-                <p className="text-gray-600 italic">"{member.quote}"</p>
-              </div>
+          <motion.div 
+            className="grid grid-cols-1 md:grid-cols-3 gap-8"
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+          >
+            {teamMembers.slice(0, 3).map((member) => (
+              <motion.div
+                key={member.id}
+                className="bg-white rounded-lg shadow-md p-6 text-center"
+                variants={fadeInUp}
+                whileHover={{ y: -10, transition: { duration: 0.3 } }}
+              >
+                <motion.img
+                  src={member.image}
+                  alt={member.name}
+                  className="w-24 h-24 rounded-full mx-auto mb-4 object-cover"
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ duration: 0.3 }}
+                />
+                                 <h3 className="text-xl font-semibold mb-2">{member.name}</h3>
+                 <p className="text-emerald-600 mb-4">{member.level}</p>
+                 <p className="text-gray-600 mb-4">{member.quote}</p>
+                 <div className="text-2xl font-bold text-emerald-600">
+                   {member.achievement}
+                 </div>
+                <div className="text-sm text-gray-500">доход в месяц</div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* Income Potential */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Потенциал дохода
-            </h2>
-            <p className="text-xl text-gray-600">
-              Ваш доход зависит только от ваших усилий
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div className="bg-gradient-to-br from-yellow-400 to-yellow-600 text-white p-8 rounded-lg text-center">
-              <div className="text-3xl font-bold mb-2">Бронза</div>
-              <div className="text-2xl font-semibold mb-4">30-60K ₽</div>
-              <ul className="text-left space-y-2 text-sm">
-                <li className="flex items-center">
-                  <CheckCircle className="h-4 w-4 mr-2" />
-                  Персональные продажи
-                </li>
-                <li className="flex items-center">
-                  <CheckCircle className="h-4 w-4 mr-2" />
-                  Базовая поддержка
-                </li>
-              </ul>
-            </div>
-
-            <div className="bg-gradient-to-br from-gray-400 to-gray-600 text-white p-8 rounded-lg text-center">
-              <div className="text-3xl font-bold mb-2">Серебро</div>
-              <div className="text-2xl font-semibold mb-4">60-120K ₽</div>
-              <ul className="text-left space-y-2 text-sm">
-                <li className="flex items-center">
-                  <CheckCircle className="h-4 w-4 mr-2" />
-                  Командные бонусы
-                </li>
-                <li className="flex items-center">
-                  <CheckCircle className="h-4 w-4 mr-2" />
-                  Обучение команды
-                </li>
-              </ul>
-            </div>
-
-            <div className="bg-gradient-to-br from-yellow-500 to-yellow-700 text-white p-8 rounded-lg text-center">
-              <div className="text-3xl font-bold mb-2">Золото</div>
-              <div className="text-2xl font-semibold mb-4">120-250K ₽</div>
-              <ul className="text-left space-y-2 text-sm">
-                <li className="flex items-center">
-                  <CheckCircle className="h-4 w-4 mr-2" />
-                  Лидерские бонусы
-                </li>
-                <li className="flex items-center">
-                  <CheckCircle className="h-4 w-4 mr-2" />
-                  Поездки и награды
-                </li>
-              </ul>
-            </div>
-
-            <div className="bg-gradient-to-br from-gray-600 to-gray-800 text-white p-8 rounded-lg text-center">
-              <div className="text-3xl font-bold mb-2">Платина</div>
-              <div className="text-2xl font-semibold mb-4">250K+ ₽</div>
-              <ul className="text-left space-y-2 text-sm">
-                <li className="flex items-center">
-                  <CheckCircle className="h-4 w-4 mr-2" />
-                  Максимальные бонусы
-                </li>
-                <li className="flex items-center">
-                  <CheckCircle className="h-4 w-4 mr-2" />
-                  VIP программы
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Registration Form */}
+      {/* Contact Form */}
       <section className="py-20 bg-emerald-600 text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
+          <motion.div 
+            className="text-center mb-12"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
               Готовы начать?
             </h2>
             <p className="text-xl text-emerald-100">
               Заполните форму и мы свяжемся с вами в течение 24 часов
             </p>
-          </div>
+          </motion.div>
 
-          <form onSubmit={handleSubmit} className="bg-white rounded-lg p-8 text-gray-900">
+          <motion.form 
+            onSubmit={handleSubmit}
+            className="space-y-6"
+            variants={slideInLeft}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+          >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Имя и фамилия *
+              <motion.div variants={fadeInUp}>
+                <label htmlFor="name" className="block text-sm font-medium mb-2">
+                  Имя и Фамилия
                 </label>
                 <input
                   type="text"
+                  id="name"
                   name="name"
-                  required
                   value={formData.name}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
+                  className="w-full px-4 py-3 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-yellow-300"
+                  required
                 />
-              </div>
+              </motion.div>
 
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Email *
+              <motion.div variants={fadeInUp}>
+                <label htmlFor="email" className="block text-sm font-medium mb-2">
+                  Email
                 </label>
                 <input
                   type="email"
+                  id="email"
                   name="email"
-                  required
                   value={formData.email}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
+                  className="w-full px-4 py-3 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-yellow-300"
+                  required
                 />
-              </div>
+              </motion.div>
 
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Телефон *
+              <motion.div variants={fadeInUp}>
+                <label htmlFor="phone" className="block text-sm font-medium mb-2">
+                  Телефон
                 </label>
                 <input
                   type="tel"
+                  id="phone"
                   name="phone"
-                  required
                   value={formData.phone}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
+                  className="w-full px-4 py-3 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-yellow-300"
+                  required
                 />
-              </div>
+              </motion.div>
 
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Город *
+              <motion.div variants={fadeInUp}>
+                <label htmlFor="city" className="block text-sm font-medium mb-2">
+                  Город
                 </label>
                 <input
                   type="text"
+                  id="city"
                   name="city"
-                  required
                   value={formData.city}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
+                  className="w-full px-4 py-3 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-yellow-300"
+                  required
                 />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Опыт в продажах
-                </label>
-                <select
-                  name="experience"
-                  value={formData.experience}
-                  onChange={handleInputChange}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
-                >
-                  <option value="">Выберите опыт</option>
-                  <option value="none">Нет опыта</option>
-                  <option value="some">Есть опыт</option>
-                  <option value="professional">Профессиональный опыт</option>
-                </select>
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Что вас мотивирует?
-                </label>
-                <textarea
-                  name="motivation"
-                  value={formData.motivation}
-                  onChange={handleInputChange}
-                  rows={3}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
-                  placeholder="Расскажите о своих целях..."
-                />
-              </div>
+              </motion.div>
             </div>
 
-            <div className="mt-8 text-center">
-              <button
-                type="submit"
-                className="inline-flex items-center px-8 py-4 bg-emerald-600 text-white font-semibold rounded-lg hover:bg-emerald-700 transition-colors"
+            <motion.div variants={fadeInUp}>
+              <label htmlFor="experience" className="block text-sm font-medium mb-2">
+                Опыт в продажах
+              </label>
+              <select
+                id="experience"
+                name="experience"
+                value={formData.experience}
+                onChange={handleInputChange}
+                className="w-full px-4 py-3 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-yellow-300"
+                required
               >
-                Присоединиться к команде
+                <option value="">Выберите опыт</option>
+                <option value="none">Нет опыта</option>
+                <option value="1-2">1-2 года</option>
+                <option value="3-5">3-5 лет</option>
+                <option value="5+">Более 5 лет</option>
+              </select>
+            </motion.div>
+
+            <motion.div variants={fadeInUp}>
+              <label htmlFor="motivation" className="block text-sm font-medium mb-2">
+                Почему хотите присоединиться к нам?
+              </label>
+              <textarea
+                id="motivation"
+                name="motivation"
+                value={formData.motivation}
+                onChange={handleInputChange}
+                rows={4}
+                className="w-full px-4 py-3 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-yellow-300"
+                required
+              />
+            </motion.div>
+
+            <motion.div 
+              className="text-center"
+              variants={fadeInUp}
+            >
+              <motion.button
+                type="submit"
+                className="bg-yellow-400 text-gray-900 px-8 py-4 rounded-lg font-semibold hover:bg-yellow-300 transition-colors inline-flex items-center"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                Отправить заявку
                 <ArrowRight className="ml-2 h-5 w-5" />
-              </button>
-            </div>
-          </form>
+              </motion.button>
+            </motion.div>
+          </motion.form>
         </div>
       </section>
     </div>

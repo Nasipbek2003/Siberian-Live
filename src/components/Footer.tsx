@@ -59,22 +59,22 @@ const Footer: React.FC = () => {
             <div className="space-y-2">
               <div className="flex items-center space-x-2">
                 <Phone className="h-4 w-4 text-emerald-400" />
-                <span className="text-gray-400">+7 (800) 123-45-67</span>
+                <span className="text-gray-400">+996 (554) 85 44 89 </span>
               </div>
               <div className="flex items-center space-x-2">
                 <Mail className="h-4 w-4 text-emerald-400" />
-                <span className="text-gray-400">info@siberian.com</span>
+                <span className="text-gray-400">abdrahmanovnasi.com</span>
               </div>
               <div className="flex items-center space-x-2">
                 <MapPin className="h-4 w-4 text-emerald-400" />
-                <span className="text-gray-400">Москва, Россия</span>
+                <span className="text-gray-400">Кыргызстан, Бишкек</span>
               </div>
             </div>
           </div>
         </div>
 
         <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-          <p>&copy; 2024 Siberian Wellness. Все права защищены.</p>
+          <p>&copy; 2025 Siberian Wellness. Все права защищены.</p>
         </div>
       </div>
     </footer>
